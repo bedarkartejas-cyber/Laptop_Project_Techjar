@@ -12,8 +12,8 @@
     },
     "ram": {
       "total_gb": "15.63",
-      "free_gb": "5.72",
-      "used_gb": "9.91"
+      "free_gb": "3.54",
+      "used_gb": "12.09"
     },
     "gpus": [
       "Intel(R) Iris(R) Xe Graphics"
@@ -24,5 +24,5 @@
   "browser_info": {
     "selenium_available": false
   },
-  "collected_at": "2025-12-09 06:14:38"
+  "collected_at": "2025-12-09 11:54:44"
 }
