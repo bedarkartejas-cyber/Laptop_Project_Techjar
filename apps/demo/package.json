@@ -1,21 +1,36 @@
 {
   "name": "demo",
   "version": "0.1.0",
-  "type": "module",
   "private": true,
+  "type": "module",
+  "main": "electron/main.cjs",
+  "description": "LiveAvatar Desktop Demo",
   "scripts": {
-    "dev": "next dev --turbopack --port 3001",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint --max-warnings 0",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "scan": "node system_info.cjs && node laptop_res.cjs",
+    "electron:dev": "concurrently -k \"cross-env BROWSER=none next dev\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron:build": "next build && electron-builder"
   },
   "dependencies": {
     "next": "^15.4.2",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "get-port": "^7.0.0",
+    "openai": "^4.28.0",
+    "dotenv": "^16.4.5",
+    "selenium-webdriver": "^4.18.1",
+    "chromedriver": "^122.0.0"
   },
   "devDependencies": {
+    "electron": "^28.2.0",
+    "electron-builder": "^24.9.1",
+    "concurrently": "^8.2.2",
+    "wait-on": "^7.2.0",
+    "cross-env": "^7.0.3",
     "@heygen/liveavatar-web-sdk": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
@@ -27,5 +42,45 @@
     "postcss": "8.4.38",
     "tailwindcss": "^3.4.17",
     "autoprefixer": "10.4.19"
+  },
+  "build": {
+    "appId": "com.heygen.liveavatardemo",
+    "productName": "LiveAvatar Demo",
+    "files": [
+      "electron/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": ".next/standalone",
+        "to": "standalone",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": ".next/static",
+        "to": "standalone/.next/static"
+      },
+      {
+        "from": "public",
+        "to": "standalone/public"
+      },
+      {
+        "from": "system_info.cjs",
+        "to": "system_info.cjs"
+      },
+      {
+        "from": "laptop_res.cjs",
+        "to": "laptop_res.cjs"
+      },
+      {
+        "from": ".env",
+        "to": "standalone/.env"
+      }
+    ],
+    "directories": {
+      "output": "dist"
+    }
   }
 }

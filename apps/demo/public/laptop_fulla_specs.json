@@ -1,0 +1,38 @@
+{
+  "from_scan": {
+    "cpu": "12th Gen Intel(R) Core(TM) i5-12500H",
+    "ram": "15.63 GB",
+    "model": "ASUS TUF Gaming F17 FX707ZC"
+  },
+  "specifications": {
+    "laptop_model": "ASUS TUF Gaming F17 FX707ZC",
+    "brand": "ASUS",
+    "series": "TUF Gaming",
+    "release_year": "2022",
+    "cpu": "12th Gen Intel Core i5-12500H",
+    "gpu": "NVIDIA GeForce RTX 3050",
+    "ram_options": "16GB DDR4",
+    "max_ram_supported": "32GB",
+    "storage_options": "512GB PCIe NVMe M.2 SSD",
+    "display": "17.3-inch FHD (1920 x 1080) 144Hz",
+    "battery": "90WHrs, 4S1P, 4-cell Li-ion",
+    "weight": "2.6 kg",
+    "dimensions": "394 x 264 x 25.4 mm",
+    "ports": [
+      "1 x Thunderbolt 4",
+      "1 x USB 3.2 Gen 1 Type-C",
+      "2 x USB 3.2 Gen 1 Type-A",
+      "1 x HDMI 2.0b",
+      "1 x RJ-45",
+      "1 x 3.5mm Combo Audio Jack"
+    ],
+    "os": "Windows 11 Home",
+    "connectivity": "Wi-Fi 6(802.11ax) + Bluetooth 5.2",
+    "webcam": "720p HD camera",
+    "keyboard": "Backlit Chiclet Keyboard RGB",
+    "build_quality": "MIL-STD-810H military standard",
+    "typical_price_range_in_inr": "₹90,000 - ₹1,10,000"
+  },
+  "error": null,
+  "timestamp": "2025-12-09 06:14:51"
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>System Initialization</title>
+    <style>
+        body {
+            background: #121212;
+            color: #12DAA8;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .loader {
+            border: 4px solid #191919;
+            border-top: 4px solid #12DAA8;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px #12DAA840;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #12DAA880;
+        }
+
+        #status {
+            opacity: 0.8;
+            font-size: 1rem;
+            min-height: 1.5em;
+        }
+
+        /* Decorative Background Elements */
+        .orb {
+            position: fixed;
+            background: #12DAA8;
+            border-radius: 50%;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .orb-1 { width: 500px; height: 500px; top: -100px; left: -100px; }
+        .orb-2 { width: 400px; height: 400px; bottom: -50px; right: -50px; }
+    </style>
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    
+    <div class="loader"></div>
+    <h1>SYSTEM INITIALIZING</h1>
+    <p id="status">Loading core modules...</p>
+
+    <script>
+        // Listen for status updates from main process
+        if (window.electronAPI) {
+            window.electronAPI.onUpdateStatus((msg) => {
+                const el = document.getElementById('status');
+                el.style.opacity = 0;
+                setTimeout(() => {
+                    el.innerText = `> ${msg}`;
+                    el.style.opacity = 1;
+                }, 100);
+            });
+        }
+    </script>
+</body>
+</html>

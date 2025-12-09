@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Biometric Verification</title>
+	<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+	<style>
+		body {
+			margin: 0;
+			background: #121212;
+			font-family: 'Courier New', monospace;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			color: white;
+			/* font-family: sans-serif; */
+		}
+
+		#video-container {
+			position: relative;
+			width: 640px;
+			height: 480px;
+			/* border: 1px solid #333; */
+			border-radius: 15px;
+			box-shadow: 0 0 10px #12DAA8;
+			background: #121212;
+		}
+
+		video {
+			width: 100%;
+			height: 100%;
+			border-radius: 15px;
+			object-fit: cover;
+			transform: scaleX(-1);
+		}
+
+		.scanner-line {
+			position: absolute;
+			width: 100%;
+			height: 2px;
+			background: #20e4b3;
+			top: 0;
+			animation: scan 2s ease-in-out infinite;
+			z-index: 10;
+		}
+
+		@keyframes scan {
+			0% {
+				top: 0;
+			}
+
+			50% {
+				top: 100%;
+			}
+
+			100% {
+				top: 0;
+			}
+		}
+
+		#msg {
+			margin-top: 20px;
+			font-size: 1.2em;
+			color: #12DAA8;
+		}
+	</style>
+</head>
+
+<body>
+	<div style="
+    position: fixed !important; 
+    top: -20% !important;
+    left: -10% !important;
+    width: 500px !important;
+    height: 500px !important;
+    background: #111111 !important;
+    border-radius: 9999px !important;
+    pointer-events: none !important;
+    "></div>
+	<div style="
+    position: fixed !important; 
+    bottom: -20% !important;
+    right: -10% !important; 
+    width: 600px !important; 
+    height: 600px !important;
+    background: #172524 !important;     /* teal-900/20 */
+    border-radius: 9999px !important;
+    pointer-events: none !important;
+    "></div>
+	<h2>SECURITY CHECKPOINT</h2>
+	<div id="video-container">
+		<video id="video" autoplay muted></video>
+		<div class="scanner-line"></div>
+	</div>
+	<div id="msg">Initializing Camera...</div>
+
+	<script>
+		const video = document.getElementById('video');
+		const msg = document.getElementById('msg');
+		let detected = false;
+
+		async function start() {
+			try {
+				const MODEL_URL = 'https://justadudewhohacks.github.io/face-api.js/models';
+				msg.innerText = "Loading AI Models...";
+				await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
+				msg.innerText = "Accessing Camera...";
+				const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
+				video.srcObject = stream;
+				video.addEventListener('play', () => {
+					msg.innerText = "SCANNING FOR AUTHORIZED PERSONNEL...";
+					const interval = setInterval(async () => {
+						if (detected) return;
+						const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions());
+						if (detections.length > 0) {
+							detected = true;
+							clearInterval(interval);
+							msg.innerText = "ACCESS GRANTED";
+							msg.style.color = "#0be1ab";
+							setTimeout(() => window.electronAPI.faceDetected(), 1000);
+						}
+					}, 500);
+				});
+			} catch (err) {
+				console.error(err);
+				msg.innerText = "Camera Error. Bypass initiated...";
+				setTimeout(() => window.electronAPI.faceDetected(), 3000);
+			}
+		}
+		start();
+	</script>
+</body>
+
+</html>
