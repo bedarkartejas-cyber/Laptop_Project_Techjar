@@ -124,7 +124,7 @@ const DashboardUI: React.FC<{
     stop,
     isMuted,
     unmute,
-    mute
+    mute,
   } = useVoiceChat();
 
   const { repeat, startListening, stopListening } = useAvatarActions(mode);
@@ -179,17 +179,17 @@ const DashboardUI: React.FC<{
           CROMA AI ASSISTANT
         </h1>
         <div className="flex items-center justify-center gap-2 text-sm text-slate-400">
-          <span className={`w-2 h-2 rounded-full ${sessionState === SessionState.CONNECTED ? 'bg-green-500 shadow-[0_0_10px_#22c55e]' : 'bg-yellow-500'}`} />
+          <span
+            className={`w-2 h-2 rounded-full ${sessionState === SessionState.CONNECTED ? "bg-green-500 shadow-[0_0_10px_#22c55e]" : "bg-yellow-500"}`}
+          />
           STATUS: {sessionState}
         </div>
       </header>
 
       {/* Main Interface */}
       <div className="w-full flex flex-col items-center gap-6">
-        
         {/* AVATAR CONTAINER (Replaces Visualizer) */}
         <div className="relative w-full max-w-3xl aspect-video bg-black/40 border border-slate-800 rounded-2xl overflow-hidden shadow-[0_0_50px_-15px_rgba(20,184,166,0.3)] group">
-          
           {/* Ambient Glow */}
           <div className="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-indigo-500/10 opacity-50 blur-xl pointer-events-none" />
 
@@ -217,8 +217,8 @@ const DashboardUI: React.FC<{
             <button
               onClick={toggleMic}
               className={`px-6 py-2 rounded-full font-bold backdrop-blur-md border ${
-                !isMuted 
-                  ? "bg-teal-500/20 border-teal-500 text-teal-300" 
+                !isMuted
+                  ? "bg-teal-500/20 border-teal-500 text-teal-300"
                   : "bg-slate-800/80 border-slate-600 text-slate-400"
               }`}
             >
@@ -255,10 +255,10 @@ const DashboardUI: React.FC<{
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                    sendMessage(message);
-                    setMessage("");
-                }
+              if (e.key === "Enter") {
+                sendMessage(message);
+                setMessage("");
+              }
             }}
             placeholder="Type query to override voice module..."
             className="flex-1 bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-teal-500 transition-colors"
@@ -278,24 +278,35 @@ const DashboardUI: React.FC<{
       {/* DASHBOARD GRID (Specs) */}
       {data && (
         <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-6 mt-4">
-          
           {/* CARD 1: PERFORMANCE */}
           <div className="bg-slate-900/40 border border-slate-800 rounded-xl p-6 backdrop-blur-sm hover:border-teal-500/30 transition-colors">
             <h2 className="text-xl font-bold text-teal-400 mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 bg-teal-500 rounded-full"/> PERFORMANCE
+              <span className="w-2 h-2 bg-teal-500 rounded-full" /> PERFORMANCE
             </h2>
             <div className="space-y-4">
               <div>
-                <div className="text-slate-500 text-xs uppercase tracking-wider">Processor</div>
-                <div className="text-slate-200 font-medium font-sans">{data.specifications.cpu}</div>
+                <div className="text-slate-500 text-xs uppercase tracking-wider">
+                  Processor
+                </div>
+                <div className="text-slate-200 font-medium font-sans">
+                  {data.specifications.cpu}
+                </div>
               </div>
               <div>
-                <div className="text-slate-500 text-xs uppercase tracking-wider">Graphics</div>
-                <div className="text-slate-200 font-medium font-sans">{data.specifications.gpu}</div>
+                <div className="text-slate-500 text-xs uppercase tracking-wider">
+                  Graphics
+                </div>
+                <div className="text-slate-200 font-medium font-sans">
+                  {data.specifications.gpu}
+                </div>
               </div>
               <div>
-                <div className="text-slate-500 text-xs uppercase tracking-wider">Memory</div>
-                <div className="text-slate-200 font-medium font-sans">{data.specifications.ram_options}</div>
+                <div className="text-slate-500 text-xs uppercase tracking-wider">
+                  Memory
+                </div>
+                <div className="text-slate-200 font-medium font-sans">
+                  {data.specifications.ram_options}
+                </div>
               </div>
             </div>
           </div>
@@ -303,19 +314,27 @@ const DashboardUI: React.FC<{
           {/* CARD 2: EXPERIENCE */}
           <div className="bg-slate-900/40 border border-slate-800 rounded-xl p-6 backdrop-blur-sm hover:border-indigo-500/30 transition-colors">
             <h2 className="text-xl font-bold text-indigo-400 mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 bg-indigo-500 rounded-full"/> EXPERIENCE
+              <span className="w-2 h-2 bg-indigo-500 rounded-full" /> EXPERIENCE
             </h2>
             <div className="space-y-4">
               <div>
-                <div className="text-slate-500 text-xs uppercase tracking-wider">Display</div>
-                <div className="text-slate-200 font-medium font-sans">{data.specifications.display}</div>
+                <div className="text-slate-500 text-xs uppercase tracking-wider">
+                  Display
+                </div>
+                <div className="text-slate-200 font-medium font-sans">
+                  {data.specifications.display}
+                </div>
               </div>
               <div>
-                <div className="text-slate-500 text-xs uppercase tracking-wider">I/O Ports</div>
+                <div className="text-slate-500 text-xs uppercase tracking-wider">
+                  I/O Ports
+                </div>
                 <ul className="text-slate-300 text-sm list-disc pl-4 mt-1 font-sans">
-                  {data.specifications.ports?.slice(0, 4).map((p, i) => (
-                    <li key={i}>{p}</li>
-                  )) || <li>Standard Ports</li>}
+                  {data.specifications.ports
+                    ?.slice(0, 4)
+                    .map((p, i) => <li key={i}>{p}</li>) || (
+                    <li>Standard Ports</li>
+                  )}
                 </ul>
               </div>
             </div>
@@ -324,23 +343,33 @@ const DashboardUI: React.FC<{
           {/* CARD 3: DEAL DETAILS */}
           <div className="bg-slate-900/40 border border-slate-800 rounded-xl p-6 backdrop-blur-sm hover:border-green-500/30 transition-colors">
             <h2 className="text-xl font-bold text-green-400 mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 bg-green-500 rounded-full"/> MARKET DATA
+              <span className="w-2 h-2 bg-green-500 rounded-full" /> MARKET DATA
             </h2>
             <div className="space-y-4">
               <div>
-                <div className="text-slate-500 text-xs uppercase tracking-wider">Est. Price</div>
-                <div className="text-3xl font-bold text-white font-sans">{data.specifications.typical_price_range_in_inr}</div>
+                <div className="text-slate-500 text-xs uppercase tracking-wider">
+                  Est. Price
+                </div>
+                <div className="text-3xl font-bold text-white font-sans">
+                  {data.specifications.typical_price_range_in_inr}
+                </div>
               </div>
               <div>
-                <div className="text-slate-500 text-xs uppercase tracking-wider">Availability</div>
-                <div className="text-orange-400 font-bold animate-pulse text-sm mt-1">⚠ LOW STOCK</div>
+                <div className="text-slate-500 text-xs uppercase tracking-wider">
+                  Availability
+                </div>
+                <div className="text-orange-400 font-bold animate-pulse text-sm mt-1">
+                  ⚠ LOW STOCK
+                </div>
               </div>
               <div className="text-xs text-slate-600 mt-6 border-t border-slate-800 pt-4">
-                DETECTED MODEL ID: <span className="font-mono text-slate-400">{data.from_scan.model}</span>
+                DETECTED MODEL ID:{" "}
+                <span className="font-mono text-slate-400">
+                  {data.from_scan.model}
+                </span>
               </div>
             </div>
           </div>
-
         </div>
       )}
     </main>

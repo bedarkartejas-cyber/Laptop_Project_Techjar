@@ -59,15 +59,6 @@
 //   });
 // }
 
-
-
-
-
-
-
-
-
-
 import {
   API_KEY,
   API_URL,
@@ -101,23 +92,22 @@ export async function POST() {
     if (!res.ok) {
       const resp = await res.json();
       console.error("HeyGen API Error Details:", JSON.stringify(resp, null, 2));
-      
+
       // Robust error message extraction to prevent crashes
-      const errorMessage = 
-        resp.message || 
-        resp.error?.message || 
-        (resp.data && Array.isArray(resp.data) && resp.data[0]?.message) || 
+      const errorMessage =
+        resp.message ||
+        resp.error?.message ||
+        (resp.data && Array.isArray(resp.data) && resp.data[0]?.message) ||
         "Failed to retrieve session token";
 
       return new Response(JSON.stringify({ error: errorMessage }), {
         status: res.status,
       });
     }
-    
+
     const data = await res.json();
     session_token = data.data.session_token;
     session_id = data.data.session_id;
-
   } catch (error) {
     console.error("Error retrieving session token:", error);
     return new Response(JSON.stringify({ error: (error as Error).message }), {
@@ -130,7 +120,7 @@ export async function POST() {
       status: 500,
     });
   }
-  
+
   return new Response(JSON.stringify({ session_token, session_id }), {
     status: 200,
     headers: {

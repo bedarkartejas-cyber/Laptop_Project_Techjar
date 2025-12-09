@@ -39,12 +39,16 @@ export async function POST(request: Request) {
     let knowledgeBaseContext = "";
     try {
       // Build the path to the public folder where the script saved the JSON
-      const specsPath = path.join(process.cwd(), "public", "laptop_fulla_specs.json");
-      
+      const specsPath = path.join(
+        process.cwd(),
+        "public",
+        "laptop_fulla_specs.json",
+      );
+
       // Check if file exists before reading
       if (fs.existsSync(specsPath)) {
         const specsData = fs.readFileSync(specsPath, "utf-8");
-        
+
         // Format the data as a system instruction for the AI
         knowledgeBaseContext = `
         
@@ -122,35 +126,6 @@ ${specsData}
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import { OPENAI_API_KEY } from "../secrets";
 // import fs from "fs";
 // import path from "path";
@@ -223,11 +198,11 @@ ${specsData}
 //     let knowledgeBaseContext = "";
 //     try {
 //       const specsPath = path.join(process.cwd(), "public", "laptop_fulla_specs.json");
-      
+
 //       if (fs.existsSync(specsPath)) {
 //         const specsData = fs.readFileSync(specsPath, "utf-8");
 //         knowledgeBaseContext = `
-        
+
 // [PRODUCT DATA - THE DEVICE TO SELL]
 // The following JSON contains the details of the laptop you must sell.
 // Only pitch THIS specific laptop model to the user.

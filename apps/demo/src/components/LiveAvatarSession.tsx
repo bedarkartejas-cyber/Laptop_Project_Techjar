@@ -44,7 +44,7 @@
 // // //     keepAlive,
 // // //     attachElement,
 // // //   } = useSession();
-  
+
 // // //   const {
 // // //     isAvatarTalking,
 // // //     isUserTalking,
@@ -95,10 +95,10 @@
 // // //       hasGreetedRef.current = true;
 // // //       setTimeout(() => {
 // // //         // You can customize this message or even inject specs here!
-// // //         const greeting = systemSpecs 
+// // //         const greeting = systemSpecs
 // // //           ? `Hello! I see you are using a ${systemSpecs.specifications?.laptop_model || "computer"}. How can I help you today?`
 // // //           : "Hello! I am ready to help you.";
-          
+
 // // //         repeat(greeting);
 // // //       }, 1500); // 1.5s delay to ensure audio buffer is ready
 // // //     }
@@ -159,11 +159,11 @@
 // // //           playsInline
 // // //           className="w-full h-full object-contain"
 // // //         />
-        
+
 // // //         {/* Enable Audio Button */}
 // // //         {isVideoMuted && isStreamReady && (
 // // //           <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10">
-// // //             <button 
+// // //             <button
 // // //               onClick={enableAvatarAudio}
 // // //               className="bg-red-500 text-white px-6 py-2 rounded-full font-bold shadow-lg hover:bg-red-600 transition-transform hover:scale-105 animate-pulse"
 // // //             >
@@ -182,7 +182,7 @@
 // // //       <div className="w-full h-full flex flex-col items-center justify-center gap-4">
 // // //         <p>Session state: {sessionState}</p>
 // // //         <p>Connection quality: {connectionQuality}</p>
-        
+
 // // //         {/* Debug Info for Specs */}
 // // //         {systemSpecs && (
 // // //           <p className="text-xs text-green-400">
@@ -270,39 +270,6 @@
 // // //   );
 // // // };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // "use client";
 
 // import React, { useEffect, useRef, useState } from "react";
@@ -337,7 +304,7 @@
 // }> = ({ mode, onSessionStopped }) => {
 //   const [message, setMessage] = useState("");
 //   const [isVideoMuted, setIsVideoMuted] = useState(true);
-  
+
 //   // Ref to ensure we only send the welcome message once
 //   const hasGreetedRef = useRef(false);
 
@@ -350,7 +317,7 @@
 //     keepAlive,
 //     attachElement,
 //   } = useSession();
-  
+
 //   const {
 //     isAvatarTalking,
 //     isUserTalking,
@@ -391,11 +358,11 @@
 //   useEffect(() => {
 //     if (isStreamReady && !hasGreetedRef.current) {
 //       hasGreetedRef.current = true;
-      
+
 //       // We keep the delay to ensure audio isn't cut off
 //       setTimeout(() => {
 //         repeat("Hello! I am ready to help you.");
-//       }, 1500); 
+//       }, 1500);
 //     }
 //   }, [isStreamReady, repeat]);
 
@@ -454,11 +421,11 @@
 //           playsInline
 //           className="w-full h-full object-contain"
 //         />
-        
+
 //         {/* Enable Audio Button */}
 //         {isVideoMuted && isStreamReady && (
 //           <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10">
-//             <button 
+//             <button
 //               onClick={enableAvatarAudio}
 //               className="bg-red-500 text-white px-6 py-2 rounded-full font-bold shadow-lg hover:bg-red-600 transition-transform hover:scale-105 animate-pulse"
 //             >
@@ -477,7 +444,7 @@
 //       <div className="w-full h-full flex flex-col items-center justify-center gap-4">
 //         <p>Session state: {sessionState}</p>
 //         <p>Connection quality: {connectionQuality}</p>
-        
+
 //         {/* Removed: Hardware Specs Display */}
 
 //         {mode === "FULL" && (
@@ -560,41 +527,6 @@
 //   );
 // };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // // "use client";
 
 // // import React, { useEffect, useRef, useState } from "react";
@@ -629,10 +561,10 @@
 // // }> = ({ mode, onSessionStopped }) => {
 // //   const [message, setMessage] = useState("");
 // //   const [isVideoMuted, setIsVideoMuted] = useState(true);
-  
+
 // //   // Ref to ensure we only send the welcome message once
 // //   const hasGreetedRef = useRef(false);
-  
+
 // //   // ✅ STATE: Store the system specs
 // //   const [systemSpecs, setSystemSpecs] = useState<any>(null);
 
@@ -645,7 +577,7 @@
 // //     keepAlive,
 // //     attachElement,
 // //   } = useSession();
-  
+
 // //   const {
 // //     isAvatarTalking,
 // //     isUserTalking,
@@ -696,20 +628,20 @@
 // //       // Wait until we have specs (or timeout if they fail)
 // //       if (systemSpecs !== undefined) {
 // //         hasGreetedRef.current = true;
-        
+
 // //         setTimeout(() => {
 // //           // Construct a dynamic greeting based on the file
 // //           let greeting = "Hello! I am ready to help you.";
-          
+
 // //           if (systemSpecs && systemSpecs.specifications) {
 // //             const model = systemSpecs.specifications.laptop_model || "computer";
 // //             const cpu = systemSpecs.specifications.cpu || "unknown processor";
 // //             greeting = `Hello! I see you are running on a ${model} with a ${cpu}. How can I assist you with this device today?`;
 // //           }
-          
+
 // //           console.log("[Avatar] Saying greeting:", greeting);
 // //           repeat(greeting);
-// //         }, 1500); 
+// //         }, 1500);
 // //       }
 // //     }
 // //   }, [isStreamReady, repeat, systemSpecs]);
@@ -769,10 +701,10 @@
 // //           playsInline
 // //           className="w-full h-full object-contain"
 // //         />
-        
+
 // //         {isVideoMuted && isStreamReady && (
 // //           <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10">
-// //             <button 
+// //             <button
 // //               onClick={enableAvatarAudio}
 // //               className="bg-red-500 text-white px-6 py-2 rounded-full font-bold shadow-lg hover:bg-red-600 transition-transform hover:scale-105 animate-pulse"
 // //             >
@@ -791,11 +723,11 @@
 // //       <div className="w-full h-full flex flex-col items-center justify-center gap-4">
 // //         <p>Session state: {sessionState}</p>
 // //         <p>Connection quality: {connectionQuality}</p>
-        
+
 // //         {/* ✅ Debug Info: Show detected hardware on screen */}
 // //         {systemSpecs && (
 // //           <div className="bg-gray-800 p-2 rounded text-xs text-green-400 font-mono">
-// //             ✅ Hardware Connected: {systemSpecs.specifications?.laptop_model || "Unknown"} 
+// //             ✅ Hardware Connected: {systemSpecs.specifications?.laptop_model || "Unknown"}
 // //             ({systemSpecs.specifications?.ram_options || "RAM Unknown"})
 // //           </div>
 // //         )}
@@ -879,52 +811,6 @@
 // //     </LiveAvatarContextProvider>
 // //   );
 // // };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // "use client";
 
@@ -1078,7 +964,7 @@
 //   // 4. ✅ UPDATED: Short, Friendly Greeting (No Specs yet)
 //   useEffect(() => {
 //     if (isStreamReady && !hasGreetedRef.current) {
-//       // We still wait for data to ensure the backend is ready, 
+//       // We still wait for data to ensure the backend is ready,
 //       // but we don't read it aloud yet.
 //       if (data) {
 //         hasGreetedRef.current = true;
@@ -1111,7 +997,7 @@
 //       </header>
 
 //       <div className="w-full flex flex-col items-center gap-6">
-        
+
 //         {/* AVATAR CONTAINER */}
 //         <div className="relative w-full max-w-3xl aspect-video bg-black/40 border border-slate-800 rounded-2xl overflow-hidden shadow-[0_0_50px_-15px_rgba(20,184,166,0.3)] group">
 //           <div className="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-indigo-500/10 opacity-50 blur-xl pointer-events-none" />
@@ -1135,8 +1021,8 @@
 //             <button
 //               onClick={toggleMic}
 //               className={`px-6 py-2 rounded-full font-bold backdrop-blur-md border ${
-//                 !isMuted 
-//                   ? "bg-teal-500/20 border-teal-500 text-teal-300" 
+//                 !isMuted
+//                   ? "bg-teal-500/20 border-teal-500 text-teal-300"
 //                   : "bg-slate-800/80 border-slate-600 text-slate-400"
 //               }`}
 //             >
@@ -1258,34 +1144,6 @@
 //   );
 // };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
@@ -1332,13 +1190,8 @@ const DashboardUI: React.FC<{
     attachElement,
   } = useSession();
 
-  const {
-    isUserTalking,
-    isAvatarTalking,
-    isMuted,
-    unmute,
-    mute
-  } = useVoiceChat();
+  const { isUserTalking, isAvatarTalking, isMuted, unmute, mute } =
+    useVoiceChat();
 
   const { repeat, startListening, stopListening } = useAvatarActions(mode);
   const { sendMessage } = useTextChat(mode);
@@ -1402,13 +1255,14 @@ const DashboardUI: React.FC<{
           CROMA AI ASSISTANT
         </h1>
         <div className="flex items-center justify-center gap-2 text-sm text-slate-400">
-          <span className={`w-2 h-2 rounded-full ${sessionState === SessionState.CONNECTED ? 'bg-green-500 shadow-[0_0_10px_#22c55e]' : 'bg-yellow-500'}`} />
+          <span
+            className={`w-2 h-2 rounded-full ${sessionState === SessionState.CONNECTED ? "bg-green-500 shadow-[0_0_10px_#22c55e]" : "bg-yellow-500"}`}
+          />
           STATUS: {sessionState}
         </div>
       </header>
 
       <div className="w-full flex flex-col items-center gap-6">
-        
         {/* AVATAR CONTAINER */}
         <div className="relative w-full max-w-3xl aspect-video bg-black/40 border border-slate-800 rounded-2xl overflow-hidden shadow-[0_0_50px_-15px_rgba(20,184,166,0.3)] group">
           <div className="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-indigo-500/10 opacity-50 blur-xl pointer-events-none" />
@@ -1432,8 +1286,8 @@ const DashboardUI: React.FC<{
             <button
               onClick={toggleMic}
               className={`px-6 py-2 rounded-full font-bold backdrop-blur-md border ${
-                !isMuted 
-                  ? "bg-teal-500/20 border-teal-500 text-teal-300" 
+                !isMuted
+                  ? "bg-teal-500/20 border-teal-500 text-teal-300"
                   : "bg-slate-800/80 border-slate-600 text-slate-400"
               }`}
             >
@@ -1457,11 +1311,13 @@ const DashboardUI: React.FC<{
               AI SPEAKING
             </div>
           )}
-          
+
           {/* Transcription UI */}
           {lastHeard && (
             <div className="absolute top-4 left-4 max-w-[50%] px-3 py-2 bg-indigo-900/80 border border-indigo-500/50 rounded-lg text-white text-xs z-20 backdrop-blur-sm">
-              <span className="text-indigo-300 font-bold block mb-1">YOU SAID:</span>
+              <span className="text-indigo-300 font-bold block mb-1">
+                YOU SAID:
+              </span>
               "{lastHeard}"
             </div>
           )}
@@ -1474,10 +1330,10 @@ const DashboardUI: React.FC<{
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                    sendMessage(message);
-                    setMessage("");
-                }
+              if (e.key === "Enter") {
+                sendMessage(message);
+                setMessage("");
+              }
             }}
             placeholder="Type query to override voice module..."
             className="flex-1 bg-slate-900/50 border border-slate-700 rounded-lg px-4 py-3 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-teal-500 transition-colors"
